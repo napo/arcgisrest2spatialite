@@ -113,6 +113,7 @@ class ArcGIS:
             if service['type']=='MapServer':
                 name = service['name'].split("/")
                 urllayers = url + "/" +  name.pop() + "/MapServer/layers"
+                print urllayers
                 layers = requests.get(urllayers,params={'f': 'pjson'}).json()
                 if len(layers) > 0:
                     for layer in layers['layers']:                            
