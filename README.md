@@ -74,7 +74,7 @@ Example6
 spatialite -header -separator ";" geodata_lombardia.sqlite "select * from arcgiscatalog;" > geodatacatalog_lombardia.csv
 ```
 - convert a table in a ESRI Shapefile by using ogr2ogr
-- 
+
 Example5
 ```
 ogr2ogr -f "ESRI Shapefile" address_numbers.shp geodata_umbria.sqlite numeri_civici
@@ -82,8 +82,11 @@ ogr2ogr -f "ESRI Shapefile" address_numbers.shp geodata_umbria.sqlite numeri_civ
 (this assume you have a table called *numeri_civici* with the address numbers stored in the file *geodata_umbria.sqlite*)
 
 - show the content with a GIS software
+
 ![qgis] (https://raw.githubusercontent.com/napo/arcgisrest2spatialite/master/img/qgis_spatialite.png)
 the qgis gui
+
+
 ![output] (https://raw.githubusercontent.com/napo/arcgisrest2spatialite/master/img/civici_umbria.png)
 the output
 
