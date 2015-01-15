@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 # -*- coding: utf-8 -*-
 """
 Created on Tue Dec 30 15:11:49 2014
@@ -27,13 +28,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-from bs4 import BeautifulSoup, UnicodeDammit
+from bs4 import BeautifulSoup
 import requests
 import sqlite3
 from shapely.geometry import MultiLineString
 from shapely.geometry import MultiPolygon
 from shapely.geometry import Polygon
 from shapely.geometry import Point
+import django.utils.encoding as djenc
+from builtins import str as futureenc
 
 class ArcGIS:
     """
@@ -160,7 +163,9 @@ class ArcGIS:
             for layer in self.layers:
                 url = layer['url']
                 name = layer['name']
-                name = unicode(name.decode(self.encoding))
+                #name = unicode(name.decode(self.encoding))
+                #name = djenc.force_unicode(name)
+                name = futureenc(name)
                 querable = layer['querable']
                 xmin = layer['properties']['extent']['xmin']
                 ymin = layer['properties']['extent']['ymin']
@@ -169,8 +174,9 @@ class ArcGIS:
                 srid = layer['properties']['extent']['spatialReference']['wkid']
                 description = layer['properties']['description']
                 #description = UnicodeDammit(description).unicode
-                description = unicode(description.decode(self.encoding))
-
+                #description = unicode(description.decode(self.encoding))
+                #description = djenc.force_unicode(description)
+                description = futureenc(description)
                 typelayer = layer['properties']['type']
                 geometrytype = layer['properties']['geometryType'].replace('esriGeometry','')
                 self._insertdatacatalog(dbout,name,url,querable,xmin,ymin,xmax,ymax,srid,description,typelayer,geometrytype)
