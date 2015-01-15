@@ -19,10 +19,9 @@ setup(
     packages=('arcrestsplite',),
     scripts=(
 	'bin/arcgis2splite.py',
-	'bin/arcgis2splite.py',
-	'bin/arcgis_get_layer.py',
+	'bin/arcgis-get-layer.py',
 	'bin/arcgis-discover.py',
-	'bin/arcgis_inspect_layer.py',
+	'bin/arcgis-inspect-layer.py',
     ),
     install_requires=install_requires,
 )
