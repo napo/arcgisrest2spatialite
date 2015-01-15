@@ -28,7 +28,7 @@ def main():
     parser = OptionParser(usage)
     parser.add_option("-t","--table",action="store",dest="table",help="name of the desidered table")
     (options,args) = parser.parse_args()
-    if len(args) == 0:
+    if len(args) < 2:
         parser.print_help()
     else:
         source = args[0]

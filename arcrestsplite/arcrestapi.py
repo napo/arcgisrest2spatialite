@@ -411,7 +411,7 @@ class ArcGIS:
         """
         isrestlayer=False
         if self.isarcgisrest:
-            mapserver="/MapServer/layers"
+            mapserver="/MapServer/"
             pos=string.find(url,mapserver)
             layerpos=len(url)-(pos+len(mapserver))
             layerid = url[len(url)-layerpos:]
