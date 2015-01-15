@@ -32,24 +32,22 @@ def do(url,dbname,verbose):
 def main():
     verbose = False
     usage = """
-	%prog [options] url
+	%prog [options] source destination
 	
 	this script extract the information about all the layers present in a ArcGIS Rest API service
-	url => url of the ArcGIS Rest API service
+	source => url of the ArcGIS Rest API service
+      destionation => the path of the sqlite file where store the data
     """
     parser = OptionParser(usage)
-    parser.add_option("-v","--verbose",action="store_true",dest="verbose",help="verbose output")
-    parser.add_option("-d","--dbname",action="store",dest="dbname",help="sqlite file to store the data")
+    parser.add_option("-v","--verbose",action="store_true",dest="verbose",help="verbose output",default=False)
     (options,args) = parser.parse_args()
-    if len(args) == 0:
+    if len(args) != 2:
         parser.print_help()
     else:
-        url = args[0]
-        dbname = options.dbname
+        source = args[0]
+        destination =  args[1]
         verbose = options.verbose
-	if dbname is None:
-		verbose = True
-        do(url,dbname,verbose)
-        
+        do(source,destination,verbose)
+            
 if __name__ == "__main__":
     main()
