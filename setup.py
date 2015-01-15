@@ -2,6 +2,7 @@ import sys
 from setuptools import setup
 
 install_requires = [
+    "future>=0.14.3",
     "requests>=2.4.3",
     "BeautifulSoup>=3.2.1",
     "Shapely>=1.3.0"

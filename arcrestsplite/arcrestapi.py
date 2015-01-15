@@ -31,11 +31,11 @@ THE SOFTWARE.
 from bs4 import BeautifulSoup
 import requests
 import sqlite3
+import string
 from shapely.geometry import MultiLineString
 from shapely.geometry import MultiPolygon
 from shapely.geometry import Polygon
 from shapely.geometry import Point
-import django.utils.encoding as djenc
 from builtins import str as futureenc
 
 class ArcGIS:
@@ -149,6 +149,19 @@ class ArcGIS:
             self._addlayers(url,response)
             if dbout is not None:
                 self.initdbcatalog(dbout)
+    
+    def inspect(self,url):
+        """
+        inspect the information of a layer
+        """
+        data = None
+        req = requests.get(url,params={'f': 'pjson'})
+        response = req.json()
+        if response.has_key("layers"):
+            data = response[0]
+        else:
+            data = response
+        return data
                 
     def createdbcatalog(self,dbout):
         if self.discoverd:
@@ -373,12 +386,38 @@ class ArcGIS:
         
     def isarcgisrest(self,url):
         """
-        check if the source is a ArcGIS rest server
+        check if the source is an ArcGIS Rest API resource
         """
         isrest=True
         if (url.find('ArcGIS/rest')==-1):
             isrest=False
         return isrest
-
+        
+    def isarcgisservice(self,url):
+        """
+        check if the source is an ArcGIS rest server
+        """
+        isrestservice=False
+        if self.isarcgisservice():
+            services = "ArcGIS/rest/services" 
+            pos=string.find(url,services)
+            if ((len(services)+pos) == (len(url))):
+                isrestservice=True
+        return isrestservice
+    
+    def isarcgislayer(self,url):
+        """
+        check if the source is an ArcGIS rest layer
+        """
+        isrestlayer=False
+        if self.isarcgisrest:
+            mapserver="/MapServer/"
+            pos=string.find(url,mapserver)
+            layerpos=len(url)-(pos+len(mapserver))
+            layerid = url[len(url)-layerpos:]
+            if layerid.isdigit():
+                isrestlayer=True
+        return isrestlayer
+        
 def urljoin(*args):
     return "/".join(map(lambda x: str(x).rstrip('/'), args))
