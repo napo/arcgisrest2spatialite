@@ -10,7 +10,7 @@ install_requires = [
 
 setup(
     name='arcgis-rest-to-spatialite',
-    version='0.0.1',
+    version='0.0.5',
     description='A tool to investigate a ArcGIS web service and store the data in spatialite',
     author='Maurizio Napolitano',
     author_email='napo@fbk.eu',
@@ -18,8 +18,11 @@ setup(
     license='MIT',
     packages=('arcrestsplite',),
     scripts=(
-        'bin/arcgis-discover.py',
 	'bin/arcgis2splite.py',
+	'bin/arcgis2splite.py',
+	'bin/arcgis_get_layer.py',
+	'bin/arcgis-discover.py',
+	'bin/arcgis_inspect_layer.py',
     ),
     install_requires=install_requires,
 )
