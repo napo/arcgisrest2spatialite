@@ -28,6 +28,7 @@ arcgis-inspect-layer.py http://geo.umbriaterritorio.it/ArcGIS/rest/services/Publ
 
 ### arcgis-get-layer.py
 this script dump the data in a spatialite file of a layer present in a ArcGIS Rest API source
+**NOTE:** this operation can use a lot of time to be completed (it depends from the number of features in the layer)
 
 Example2 - create the spatialite file *address_number.sqlite* from the source *numeri civici*
 ```
