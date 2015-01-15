@@ -168,7 +168,9 @@ class ArcGIS:
                 ymax = layer['properties']['extent']['ymax']
                 srid = layer['properties']['extent']['spatialReference']['wkid']
                 description = layer['properties']['description']
-                description = UnicodeDammit(description).unicode
+                #description = UnicodeDammit(description).unicode
+                description = unicode(description.decode(self.encoding))
+
                 typelayer = layer['properties']['type']
                 geometrytype = layer['properties']['geometryType'].replace('esriGeometry','')
                 self._insertdatacatalog(dbout,name,url,querable,xmin,ymin,xmax,ymax,srid,description,typelayer,geometrytype)
