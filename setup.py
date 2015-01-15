@@ -17,7 +17,8 @@ setup(
     license='MIT',
     packages=('arcrestsplite',),
     scripts=(
-        'bin/arcgis-discover',
+        'bin/arcgis-discover.py',
+	'bin/arcgis2splite.py',
     ),
     install_requires=install_requires,
 )
