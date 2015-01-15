@@ -28,7 +28,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-from bs4 import BeautifulSoup
+from BeautifulSoup import BeautifulSoup
 import requests
 import sqlite3
 import string
