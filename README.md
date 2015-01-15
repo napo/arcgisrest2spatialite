@@ -17,6 +17,8 @@ cd repo
 pip install -r requirements.txt
 python setup.py install
 ```
+**NOTE**: you need an installation of spatialite 3.8+
+
 ## some command interfaces created with the class
 ### arcgis-inspect-layer.py
 this script show a json with the information of a layer present in a ArcGIS Rest API source
