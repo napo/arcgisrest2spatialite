@@ -284,7 +284,6 @@ class ArcGIS:
             params['returnGeometry']='true'
             data = requests.get(url,params=params).json()
             alldata.append(data)           
-        
         self._insertdata(name,alldata,dbout)    
     
     def _createtable(self,name,fields):
